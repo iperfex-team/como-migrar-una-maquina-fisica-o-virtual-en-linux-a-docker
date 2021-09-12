@@ -63,6 +63,34 @@ apt update
 apt -y install vim curl screen mc git unzip net-tools links2 sudo nmap make mycli rsync
 ```
 
+instalando Docker
+
+```
+curl -fsSL get.docker.com -o get-docker.sh
+sh get-docker.sh
+```
+
+Configuración 
+
+```
+mkdir -p /etc/docker
+cat > /etc/docker/daemon.json <<ENDLINE
+{
+  "bip": "172.17.0.1/24"
+}
+ENDLINE
+
+systemctl enable docker
+systemctl start docker
+```
+
+Docker Compose
+
+```
+ curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
+
+```
+
 
 ### Acceso ssh con root (por default esta desactivado)
 
