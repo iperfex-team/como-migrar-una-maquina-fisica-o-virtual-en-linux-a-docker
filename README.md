@@ -153,15 +153,21 @@ rsync -aAXv --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/
 ## FIX 
 
 ```
-#fix apache
-mkdir -p /root/docker/issabelpbx/run/lock
+#fix httpd
+mkdir -p var/run/httpd
+chown 0:48 -R var/run/httpd
+
+#fix mariadb
+mkdir -p var/run/mariadb
+chown 27:27 -R var/run/mariadb
+
 ```
 
 ## Docker import
 
 ```
 cd /root/docker/issabelpbx
-tar -cf- . | docker import --change "EXPOSE 22 80 443 3306 5060" - issabelpbx
+tar -cf- . | docker import --change "EXPOSE 22 80 443 3306 5060/udp 5060/tcp" - issabelpbx
 ```
 
 ## Docuer RUN
