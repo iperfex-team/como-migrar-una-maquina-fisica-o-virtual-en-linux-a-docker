@@ -24,7 +24,7 @@ Los requisitos de la configuración de las dos máquina virtual son:
 
 **Debian** - [Descarga](https://www.debian.org/download)
 
-**IssabelPBX** - [Descarga](Download Issabel ISO)
+**IssabelPBX** - [Descarga](https://www.issabel.org/go/download)
 
 
 ## Configuración VirtualBox Debian
