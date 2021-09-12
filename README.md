@@ -153,6 +153,8 @@ rsync -aAXv --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/
 ## FIX 
 
 ```
+cd /root/docker/issabelpbx
+
 #fix httpd
 mkdir -p var/run/httpd
 chown 0:48 -R var/run/httpd
