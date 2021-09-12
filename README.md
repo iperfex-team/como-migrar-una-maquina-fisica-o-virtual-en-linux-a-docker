@@ -113,3 +113,31 @@ export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
 ```bash
 source /root/.bashrc
 ```
+
+## Rsync via SSH
+
+```
+mkdir -p /root/docker/wordpress
+cd /root
+rsync -aAXv --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} root@172.16.55.40:/ docker/wordpress
+```
+
+## FIX 
+
+```
+#fix apache
+mkdir -p /root/docker/wordpress/run/lock
+```
+
+## Docker import
+
+```
+cd /root/docker/wordpress
+tar -cf- . | docker import --change "EXPOSE 22 80 443 3306" - wordpress
+```
+
+## Docuer RUN
+
+```
+docker run -d -p 8080:80 -p 4443:443 --name apache2 wordpress /usr/sbin/apachectl -D FOREGROUND
+```
