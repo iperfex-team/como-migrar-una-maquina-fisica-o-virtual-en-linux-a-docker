@@ -207,6 +207,7 @@ services:
 #   volumes:
 #     - ./user-data/mysql:/var/lib/mysql
 #     - ./user-data/asterisk:/etc/asterisk
+#     - ./user-data/log:/var/log
    restart: always
    privileged: true
 ```
@@ -215,10 +216,18 @@ services:
 
 ```
 cd /root/docker
-mkdir -p /root/docker/user-data
+mkdir -p /root/docker/user-data /root/docker/user-data/log
+
 docker cp pbx:/var/lib/mysql ./user-data/mysql
 chown 27:27 -R ./user-data/mysql
+
 docker cp pbx:/etc/asterisk ./user-data/asterisk
+
+docker cp pbx:/var/log/httpd ./user-data/log/httpd
+docker cp pbx:/var/log/asterisk ./user-data/log/asterisk
+docker cp pbx:/var/log/mariadb ./user-data/log/mariadb
+chown 27:27 -R ./user-data/log/mariadb
+touch ./user-data//log/fail2ban.log
 ```
 
 ```
@@ -240,6 +249,7 @@ services:
    volumes:
      - ./user-data/mysql:/var/lib/mysql
      - ./user-data/asterisk:/etc/asterisk
+     - ./user-data/log:/var/log
    restart: always
    privileged: true
 ```
