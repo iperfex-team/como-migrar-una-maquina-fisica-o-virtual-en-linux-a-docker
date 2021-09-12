@@ -163,6 +163,8 @@ chown 0:48 -R var/run/httpd
 mkdir -p var/run/mariadb
 chown 27:27 -R var/run/mariadb
 
+#fix fail2ban
+mkdir -p var/run/fail2ban/
 ```
 
 ## Docker import
@@ -172,8 +174,26 @@ cd /root/docker/issabelpbx
 tar -cf- . | docker import --change "EXPOSE 22 80 443 3306 5060/udp 5060/tcp" - issabelpbx
 ```
 
-## Docuer RUN
+## Docuer Compose
 
 ```
-docker run -d -p 8080:80 -p 4443:443 --name pbx issabelpbx /usr/sbin/httpd -DFOREGROUND
+version: '3.1'
+
+services:
+
+  issabelpbx:
+   container_name: issabelpbx
+   image: issabelpbx:latest
+   ports:
+     - "4443:443"
+     - "2222:22"
+     - "3306:3306"
+     - "5060:5060"
+   command: bash -c "/usr/sbin/sshd -D & /usr/bin/mysqld_safe & /usr/sbin/httpd -DFOREGROUND & /usr/bin/python2 -s /usr/bin/fail2ban-server -s /var/run/fail2ban/fail2ban.sock -p /var/run/fail2ban/fail2ban.pid -x -b & /usr/sbin/asterisk -U asterisk -G asterisk -mqf -C /etc/asterisk/asterisk.conf"
+
+#   volumes:
+#     - ./user-data/mysql:/var/lib/mysql
+#     - ./user-data/asterisk:/etc/asterisk
+   restart: always
+   privileged: true
 ```
