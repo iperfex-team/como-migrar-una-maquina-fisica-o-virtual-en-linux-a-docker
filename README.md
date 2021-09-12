@@ -144,6 +144,18 @@ source /root/.bashrc
 
 ## Rsync via SSH
 
+Antes de hacer el rsync podemos eliminar unos paquetes en nuestro IssabelPBX que no veo la necesidad de llevarlo a docker.
+
+Esto queda en cada uno.
+
+```
+yum remove -y issabel-email_admin
+yum remove -y issabel-fax
+yum remove -y issabel-addons
+```
+
+Desde el servidor de Debian (el que llamamos docker) seguimos los siguientes pasos:
+
 ```
 mkdir -p /root/docker/issabelpbx
 cd /root
