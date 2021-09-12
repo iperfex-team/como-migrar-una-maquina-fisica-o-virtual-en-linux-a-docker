@@ -160,8 +160,8 @@ mkdir -p /root/docker/issabelpbx/run/lock
 ## Docker import
 
 ```
-cd /root/docker/wordpress
-tar -cf- . | docker import --change "EXPOSE 22 80 443 3306" - issabelpbx
+cd /root/docker/issabelpbx
+tar -cf- . | docker import --change "EXPOSE 22 80 443 3306 5060" - issabelpbx
 ```
 
 ## Docuer RUN
