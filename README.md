@@ -1,3 +1,9 @@
+![iPERFEX](https://www.iperfex.com/wp-content/uploads/2019/01/iPerfex_logo_naranja-e1546949425459.png)
+
+# Webinar - Como migrar una maquina fisica o virtual en Linux a Docker
+
+![Docker](https://github.com/iperfex-team/como-migrar-una-maquina-fisica-o-virtual-en-linux-a-docker/blob/main/como-migrar-una-maquina-fisica-o-virtual-en-linux-a-docker.png)
+
 ## Máquina virtual
 
 Para implementar nuestro entorno de desarrollo vamos a necesitar un sistema de virtualización.  
