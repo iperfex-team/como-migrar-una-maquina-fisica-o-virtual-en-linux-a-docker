@@ -24,7 +24,7 @@ Los requisitos de la configuración de las dos máquina virtual son:
 
 **Debian** - [Descarga](https://www.debian.org/download)
 
-**WordPress Virtual Machine** - [Descarga](https://bitnami.com/stack/wordpress/virtual-machine)
+**IssabelPBX** - [Descarga](Download Issabel ISO)
 
 
 ## Configuración VirtualBox Debian
