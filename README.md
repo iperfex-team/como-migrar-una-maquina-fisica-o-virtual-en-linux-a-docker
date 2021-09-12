@@ -253,3 +253,60 @@ services:
    restart: always
    privileged: true
 ```
+
+
+## Docker-compose microservicios
+
+```
+version: '3.1'
+
+services:
+
+  asterisk:
+   container_name: asterisk
+   image: issabelpbx:latest
+   command: bash -c "/usr/bin/python2 -s /usr/bin/fail2ban-server -s /var/run/fail2ban/fail2ban.sock -p /var/run/fail2ban/fail2ban.pid & /usr/sbin/asterisk -U asterisk -G asterisk -mqf -C /etc/asterisk/asterisk.conf"
+   volumes:
+     - ./user-data/asterisk:/etc/asterisk
+     - ./user-data/log:/var/log
+   depends_on:
+     - mariadb
+   restart: always
+   privileged: true
+   network_mode: host
+
+  mariadb:
+   container_name: mariadb
+   image: issabelpbx:latest
+   command: bash -c "/usr/bin/mysqld_safe"
+   volumes:
+     - ./user-data/mysql:/var/lib/mysql
+     - ./user-data/log:/var/log
+   restart: always
+   privileged: true
+   network_mode: host
+
+  apache:
+   container_name: apache
+   image: issabelpbx:latest
+   command: bash -c "/usr/sbin/httpd -DFOREGROUND"
+   volumes:
+     - ./user-data/log:/var/log
+   depends_on:
+     - mariadb
+     - asterisk
+   restart: always
+   privileged: true
+   network_mode: host
+
+
+#  ssh:
+#   container_name: ssh
+#   image: issabelpbx:latest
+#   command: bash -c "/usr/sbin/sshd -D"
+#   volumes:
+#     - ./user-data/log:/var/log
+#   restart: always
+#   privileged: true
+#   network_mode: host
+```
