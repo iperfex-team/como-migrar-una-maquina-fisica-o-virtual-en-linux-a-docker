@@ -171,7 +171,7 @@ mkdir -p var/run/fail2ban/
 
 ```
 cd /root/docker/issabelpbx
-tar -cf- . | docker import --change "EXPOSE 22 80 443 3306 5060/udp 5060/tcp" - issabelpbx
+tar -cf- . | docker import --change "EXPOSE 22 80 443 3306 5060/udp 5060/tcp 4569/udp" - issabelpbx
 ```
 
 ## Docuer Compose
@@ -181,14 +181,15 @@ version: '3.1'
 
 services:
 
-  issabelpbx:
-   container_name: issabelpbx
+  pbx:
+   container_name: pbx
    image: issabelpbx:latest
    ports:
      - "4443:443"
      - "2222:22"
      - "3306:3306"
      - "5060:5060"
+     - "4569:4569"
    command: bash -c "/usr/sbin/sshd -D & /usr/bin/mysqld_safe & /usr/sbin/httpd -DFOREGROUND & /usr/bin/python2 -s /usr/bin/fail2ban-server -s /var/run/fail2ban/fail2ban.sock -p /var/run/fail2ban/fail2ban.pid -x -b & /usr/sbin/asterisk -U asterisk -G asterisk -mqf -C /etc/asterisk/asterisk.conf"
 
 #   volumes:
