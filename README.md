@@ -145,27 +145,27 @@ source /root/.bashrc
 ## Rsync via SSH
 
 ```
-mkdir -p /root/docker/wordpress
+mkdir -p /root/docker/issabelpbx
 cd /root
-rsync -aAXv --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} root@172.16.55.40:/ docker/wordpress
+rsync -aAXv --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} root@172.16.0.81:/ docker/issabelpbx
 ```
 
 ## FIX 
 
 ```
 #fix apache
-mkdir -p /root/docker/wordpress/run/lock
+mkdir -p /root/docker/issabelpbx/run/lock
 ```
 
 ## Docker import
 
 ```
 cd /root/docker/wordpress
-tar -cf- . | docker import --change "EXPOSE 22 80 443 3306" - wordpress
+tar -cf- . | docker import --change "EXPOSE 22 80 443 3306" - issabelpbx
 ```
 
 ## Docuer RUN
 
 ```
-docker run -d -p 8080:80 -p 4443:443 --name apache2 wordpress /usr/sbin/apachectl -D FOREGROUND
+docker run -d -p 8080:80 -p 4443:443 --name pbx issabelpbx /usr/sbin/httpd -DFOREGROUND
 ```
