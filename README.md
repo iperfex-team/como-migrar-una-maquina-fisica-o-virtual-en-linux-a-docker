@@ -186,7 +186,7 @@ cd /root/docker/issabelpbx
 tar -cf- . | docker import --change "EXPOSE 22 80 443 3306 5060/udp 5060/tcp 4569/udp" - issabelpbx
 ```
 
-## Docuer Compose
+## Docker Compose
 
 ```
 version: '3.1'
@@ -212,7 +212,7 @@ services:
    privileged: true
 ```
 
-### docker persistencia archivos asterisk y mariadb.
+### Docker persistencia archivos asterisk y mariadb.
 
 ```
 cd /root/docker
