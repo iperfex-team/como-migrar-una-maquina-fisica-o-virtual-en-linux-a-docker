@@ -223,11 +223,9 @@ chown 27:27 -R ./user-data/mysql
 
 docker cp pbx:/etc/asterisk ./user-data/asterisk
 
-docker cp pbx:/var/log/httpd ./user-data/log/httpd
-docker cp pbx:/var/log/asterisk ./user-data/log/asterisk
-docker cp pbx:/var/log/mariadb ./user-data/log/mariadb
+docker cp pbx:/var/log ./user-data/log
 chown 27:27 -R ./user-data/log/mariadb
-touch ./user-data//log/fail2ban.log
+
 ```
 
 ```
