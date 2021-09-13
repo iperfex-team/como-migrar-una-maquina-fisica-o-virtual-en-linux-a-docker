@@ -212,7 +212,7 @@ services:
    privileged: true
 ```
 
-### docker redundancia archivos asterisk y mariadb.
+### docker persistencia archivos asterisk y mariadb.
 
 ```
 cd /root/docker
