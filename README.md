@@ -2,7 +2,8 @@
 
 # Webinar - Como migrar una maquina fisica o virtual en Linux a Docker
 
-![Docker](https://github.com/iperfex-team/como-migrar-una-maquina-fisica-o-virtual-en-linux-a-docker/blob/main/como-migrar-una-maquina-fisica-o-virtual-en-linux-a-docker.png)
+
+[![Watch the video](https://github.com/iperfex-team/como-migrar-una-maquina-fisica-o-virtual-en-linux-a-docker/blob/main/como-migrar-una-maquina-fisica-o-virtual-en-linux-a-docker.png)](https://www.youtube.com/watch?v=V8Uxk5shwHc)
 
 ## Máquina virtual
 
